@@ -16,7 +16,7 @@ const createproduct=async(req,res)=>{
 
     const getproduct=async(req,res)=>{
         try{
-            const data=await product.findById();
+            const data=await product.findOne();
             res.json({
                 message:"product getted successfully",
                 data

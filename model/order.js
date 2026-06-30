@@ -14,7 +14,7 @@ const orderSchema= new mongoose.Schema({
         products:{
             type:mongoose.Schema.Types.ObjectId,
             required:true,
-            ref:"products"
+            ref:"Product"
         },
         quantity:{
             type:Number,
@@ -29,7 +29,7 @@ const orderSchema= new mongoose.Schema({
     shippingAddress:{
         type:mongoose.Schema.Types.ObjectId,
         required:true,
-        ref:"address"
+        ref:"Address"
     },
     totalprice:{
         type:Number,

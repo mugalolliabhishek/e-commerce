@@ -2,10 +2,9 @@ const Order=require("../model/order");
  
 const createOrder=async (req,res) => {
     try{
-        const newOrder= new order(req.body);
-        const saveorder= await newOrder.save();
+        const newOrder= new Order(req.body);
 
-        res.status(200).json({message:"Order created"})
+        res.status(200).json(newOrder)
     }
     catch(error){
         res.status(400).json({message:error.message});
@@ -15,11 +14,11 @@ const createOrder=async (req,res) => {
 
 const getallOrders=async (req,res) => {
     try{
-        const Order = await Order.find().populate("User") .populate("shippingAddress") .populate("poducted.products")
-        res.status(200).json({message:"Getted All Orders"})
+        const Orders = await Order.find().populate("user") .populate("shippingAddress") .populate("producted.products")
+        res.status(200).json(Orders)
 }
 catch(error){
-    res.status(400).json({message:message.error})
+    res.status(400).json(error.message)
 }
 };
 
@@ -27,7 +26,7 @@ const getsingleOrder=async(req,res) =>{
     try{
         const Order = await Order.findById(req.params.id)  .populate("User") .populate("shippingAddress") .populate("poducted.products")
         if(!Order){
-            res.status(200).json({ message:"Order not found"})
+            res.status(200).json({ message:"Order not found"},Order)
     }
 }
 catch(error){
@@ -38,7 +37,7 @@ catch(error){
 const getparticularuserOrder=async(req,res) =>{
 try{
     const Order=await Order.find({user:req.params.userId}).populate("shippingAddress") .populate("poducted.products")
-     res.status(200).json(Orderrders);
+     res.status(200).json(Order);
 }
 catch(error){
     res.status(400).json(error.message)
@@ -77,7 +76,7 @@ const deleteOrder = async (req, res) => {
         if (!deletedOrder) {
             return res.status(404).json({
                 message: "Order not found"
-            });
+            },deletedOrder);
         }
 
         res.status(200).json({
