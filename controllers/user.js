@@ -48,4 +48,15 @@ const Login=async(req,res)=>{
         res.status(404).send({message:error.message})
     }
 }
-module.exports={CreateAccount,Login};
+
+const Logout=async(req,res)=>{
+  try{
+    res.json({
+        message:"Logout Successfully"
+    })
+  }
+  catch(error){
+    res.send(error.message)
+  }
+}
+module.exports={CreateAccount,Login,Logout};
